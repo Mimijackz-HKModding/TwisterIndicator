@@ -78,7 +78,8 @@ namespace TwisterIndicator
         public FsmColor ColorVar;
         public PlayMakerFSM soulHud;
 
-        private int maxMenuColorValues = 256;
+        private int maxMenuColorValues = 255;
+        private int maxMenuHueValues = 360;
 
         public override string GetVersion() => GetType().Assembly.GetName().Version.ToString();
 
@@ -143,12 +144,12 @@ namespace TwisterIndicator
                         opt =>
                         {
                             Color.RGBToHSV(this.settings.customColor, out float H, out float S, out float V);
-                            this.settings.customColor = Color.HSVToRGB(opt / maxMenuColorValues, S, V);
+                            this.settings.customColor = Color.HSVToRGB(opt / maxMenuHueValues, S, V);
                             UpdateColor(2);
                         },
-                        () => getHSVValues(this.settings.customColor).H * maxMenuColorValues,
+                        () => getHSVValues(this.settings.customColor).H * maxMenuHueValues,
                         0,
-                        maxMenuColorValues,
+                        maxMenuHueValues,
                         true,
                         "H"
                     ),
