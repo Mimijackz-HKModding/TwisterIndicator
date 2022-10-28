@@ -395,6 +395,8 @@ namespace TwisterIndicator
 
         private void HeroUpdate()
         {
+            if (ColorVar == null) return;
+
             if (HeroController.instance.playerData.MPCharge >= 24 && (settings.twisterVisible || HeroController.instance.playerData.equippedCharm_33))
             {
                 ColorVar.Value = twisterColor;
